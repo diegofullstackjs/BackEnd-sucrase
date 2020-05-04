@@ -1,5 +1,6 @@
 import dotenv from 'dotenv/config'
 import Mongo from './config/mongoose'
+import IndexRoutes from './routes/index'
 import express from 'express'
 import cors from 'cors'
 class Server {
@@ -13,12 +14,11 @@ class Server {
     }
 
     middlewares(){
+        this.express.use(express.json())
        this.express.use(cors())
     }
     rotas(){
-        this.express.use('/',(req,res) => {
-            return res.status(200).json({msg: "ok"})
-        })
+        this.express.use('/',IndexRoutes)
     }
     run(){
         this.express.listen(this.port, ()=> {
