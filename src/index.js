@@ -1,6 +1,7 @@
 import dotenv from 'dotenv/config'
 import Mongo from './config/mongoose'
 import IndexRoutes from './routes/index'
+import UsersRoutes from './routes/users'
 import express from 'express'
 import cors from 'cors'
 class Server {
@@ -19,6 +20,7 @@ class Server {
     }
     rotas(){
         this.express.use('/',IndexRoutes)
+        this.express.use('/users',UsersRoutes)
     }
     run(){
         this.express.listen(this.port, ()=> {
